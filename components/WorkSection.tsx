@@ -1,0 +1,148 @@
+"use client";
+
+import { useState, useEffect, useRef } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faChevronLeft,
+  faChevronRight,
+} from "@fortawesome/free-solid-svg-icons";
+
+const projects = [
+  {
+    title: "Hospital Finder",
+    image: "/work1.jpg",
+    desc: "Website pencarian rumah sakit.",
+  },
+  {
+    title: "Portfolio UI",
+    image: "/work2.jpg",
+    desc: "Portfolio modern dengan animasi.",
+  },
+  {
+    title: "Chat Application",
+    image: "/work3.jpg",
+    desc: "Realtime chat app.",
+  },
+];
+
+export default function WorkSection() {
+  const [index, setIndex] = useState(0);
+  const [isHovering, setIsHovering] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+  const scrollTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 600);
+    };
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
+
+  // Auto hover effect for mobile
+  useEffect(() => {
+    if (!isMobile) return;
+
+    const triggerHover = () => {
+      setIsHovering(true);
+      
+      if (scrollTimeoutRef.current) {
+        clearTimeout(scrollTimeoutRef.current);
+      }
+      
+      scrollTimeoutRef.current = setTimeout(() => {
+        setIsHovering(false);
+        
+        // Auto slide to next card after hover ends
+        setTimeout(() => {
+          setIndex((prev) => (prev + 1) % projects.length);
+        }, 300);
+      }, 2000);
+    };
+
+    // Initial trigger
+    const initialTimeout = setTimeout(triggerHover, 1000);
+
+    // Set interval for continuous auto-hover
+    const interval = setInterval(() => {
+      if (!isHovering) {
+        triggerHover();
+      }
+    }, 4000);
+
+    return () => {
+      clearTimeout(initialTimeout);
+      clearInterval(interval);
+      if (scrollTimeoutRef.current) {
+        clearTimeout(scrollTimeoutRef.current);
+      }
+    };
+  }, [isMobile, index]);
+
+  const next = () => {
+    setIndex((index + 1) % projects.length);
+  };
+
+  const prev = () => {
+    setIndex((index - 1 + projects.length) % projects.length);
+  };
+
+  return (
+    <section className="work-section container" id="work">
+      <h2 className="work-title">WORK</h2>
+
+      <div className="work-carousel">
+        <button className="work-arrow left" onClick={prev}>
+          <FontAwesomeIcon icon={faChevronLeft} />
+        </button>
+
+        <div className="work-viewport">
+          <div
+            className="work-track"
+            style={{
+              transform: isMobile 
+                ? `translateY(-${index * 100}%)` 
+                : `translateX(-${index * 50}%)`,
+            }}
+          >
+            {projects.map((p, i) => (
+              <div 
+                className={`work-card ${isMobile && isHovering && i === index ? "hovered" : ""}`} 
+                key={i}
+                onMouseEnter={() => setIsHovering(true)}
+                onMouseLeave={() => setIsHovering(false)}
+              >
+                <div className="work-image">
+                  <img src={p.image} />
+
+                  <div className={`work-overlay ${isMobile && i === index ? (isHovering ? "visible" : "") : ""}`}>
+                    <p>{p.desc}</p>
+                  </div>
+                </div>
+
+                <div className="work-info">
+                  <h3>{p.title}</h3>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <button className="work-arrow right" onClick={next}>
+          <FontAwesomeIcon icon={faChevronRight} />
+        </button>
+      </div>
+
+      <div className="work-dots">
+        {projects.map((_, i) => (
+          <div
+            key={i}
+            className={`dot ${index === i ? "active" : ""}`}
+            onClick={() => setIndex(i)}
+          ></div>
+        ))}
+      </div>
+    </section>
+  );
+}
