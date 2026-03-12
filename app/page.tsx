@@ -56,38 +56,37 @@ export default function Home() {
 
   return (
     <>
-
-      
       <Navbar active={activeNav} onNavigate={scrollToSection} />
-      
+
       <div className="horizontal-scroll-container" ref={containerRef}>
         <section className="horizontal-section" id="home">
           <HeroSlider />
         </section>
-        
+
         <section className="horizontal-section" id="work">
           <WorkSection />
         </section>
-        
+
         <section id="about" className="about-section horizontal-section">
           <h2 className="about-title">ABOUT</h2>
           <div className="about-content">
             <p>
-              I am a passionate web developer with expertise in building modern
-              and responsive websites. With a strong foundation in front-end
-              technologies, I create seamless digital experiences.
+              Saya adalah seorang web developer yang memiliki passion dalam
+              membangun website modern dan responsif. Dengan fondasi yang kuat
+              pada teknologi front-end, saya berfokus menciptakan pengalaman
+              digital yang mulus, cepat, dan nyaman digunakan oleh pengguna.
             </p>
           </div>
         </section>
       </div>
-      
-      <SectionNavigator 
-        section={section} 
+
+      <SectionNavigator
+        section={section}
         setSection={scrollToSection}
         next={next}
         prev={prev}
       />
-      
+
       <ResumeTab />
       <SocialBar />
     </>

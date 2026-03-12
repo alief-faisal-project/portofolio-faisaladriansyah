@@ -129,7 +129,7 @@ body {
   justify-content: flex-end;
   align-items: center;
   overflow: hidden;
-  padding-right: 180px;
+  padding-right: 10px;
 }
 
 .hero-bg-image {
@@ -164,6 +164,8 @@ body {
 .hero-text h2 {
   color: #ffd000;
   margin-top: 1px;
+  margin-bottom: 200px;
+  padding-left: 86;
 }
 
 .hero-text {
@@ -588,7 +590,8 @@ body {
     align-items: flex-end;
     overflow: hidden;
     padding-right: 0;
-    padding-bottom: 0;
+    padding-bottom: 59;
+    padding-top: 10px;
   }
 
   .hero-bg-image {
@@ -610,144 +613,155 @@ body {
 
   .hero-text {
     margin-left: 0;
-    margin-top: 20px;
+    margin-top: 5px;
   }
 
   .hero-text h1,
   .hero-text h2 {
-    font-size: clamp(48px, 12vw, 80px);
+    font-size: clamp(90px, 12vw, 80px);
   }
 
-  .hero-image {
-    position: absolute;
-    bottom: 60px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 100%;
-    display: flex;
-    justify-content: center;
-  }
+  
+.hero-text h2 {
+  color: #ffd000;
+  margin-top: 1px;
+  margin-bottom: 200px;
+  padding-left: 35px;
+}
 
-  .hero-image img {
-    width: 90%;
-    max-width: 400px;
-    margin-right: 0;
-  }
+.hero-image{
+  position:absolute;
+  bottom:120px; /* naikkan posisi */
+  left:50%;
+  transform:translateX(-50%);
+  width:100%;
+  display:flex;
+  justify-content:center;
+}
+
+.hero-image img{
+  width:110%;      /* lebih besar */
+  max-width:520px; /* batas maksimum lebih besar */
+  margin-right:0;
+}
 
   /* Hide chevron indicators on mobile */
   .hero-chevron-nav,
   .hero-indicators,
   .carousel-indicator,
-  .section-navigator,
-  .work-arrow {
+  .section-navigator {
     display: none !important;
   }
 
-/* Work section - mobile */
-.work-section {
-  margin-top: 0;
-  padding: 20px 20px 40px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  /* Work section - mobile */
+  .work-section {
+    margin-top: 0;
+    padding: 20px 20px 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 
-  /* ubah dari center agar card naik */
-  justify-content: flex-start;
+    /* ubah dari center agar card naik */
+    justify-content: flex-start;
 
-  min-height: 100vh;
-}
+    min-height: 100vh;
+  }
 
-.work-title {
-  display: block;
-  font-size: 32px;
-  margin-bottom: 24px;
-  text-align: center;
-}
+  .work-title {
+    display: block;
+    font-size: 32px;
+    margin-bottom: 24px;
+    text-align: center;
+  }
 
-.work-carousel {
-  width: 100%;
-  max-width: 350px;
-  height: 420px;
-  overflow: hidden;
-  position: relative;
-}
+  .work-carousel {
+    width: 100%;
+    max-width: 350px;
+    height: 420px;
+    overflow: hidden;
+    position: relative;
+  }
 
-.work-viewport{
-  width:100%;
-  height:100%;
-  overflow:hidden;
-}
+  .work-viewport {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+  }
 
-/* kembali horizontal seperti desktop */
-.work-track{
-  display: flex;
-  flex-direction: row;
-  height: 100%;
-  width: 100%;
-  transition: transform 0.5s ease;
-}
+  /* kembali horizontal seperti desktop */
+  .work-track {
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+    width: 100%;
+    transition: transform 0.5s ease;
+  }
 
-.work-card{
-  width:100%;
-  min-width:100%;
-  flex-shrink:0;
-}
+  .work-card {
+    width: 100%;
+    min-width: 100%;
+    flex-shrink: 0;
+  }
 
-.work-card.hovered .work-overlay {
-  bottom: 0;
-}
+  .work-card.hovered .work-overlay {
+    bottom: 0;
+  }
 
-/* =========================
+  /* =========================
    ARROW
 ========================= */
 
-.work-arrow {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  z-index: 10;
+  .work-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 20;
 
-  width: 36px;
-  height: 36px;
+    width: 40px;
+    height: 40px;
 
-  border-radius: 50%;
-  border: none;
+    border: none;
+    border-radius: 50%;
 
-  background: rgba(0,0,0,0.65);
-  color: white;
+    background: #ffd000;
+    color: black;
 
-  display: flex;
-  align-items: center;
-  justify-content: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
-  font-size: 14px;
-  cursor: pointer;
+    font-size: 16px;
 
-  transition: all .25s ease;
-}
+    transition: all 0.25s ease;
+  }
 
-.work-arrow:hover {
-  background: rgba(0,0,0,0.85);
-}
+  .work-arrow svg {
+    width: 16px;
+    height: 16px;
+  }
 
-.work-arrow.left {
-  left: -12px;
-}
+  .work-arrow:hover {
+    transform: translateY(-50%) scale(1.1);
+  }
 
-.work-arrow.right {
-  right: -12px;
-}
+  .work-arrow.left {
+    left: -25px;
+  }
 
-/* =========================
+  .work-arrow.right {
+    right: -25px;
+  }
+
+  /* =========================
    DOTS
 ========================= */
 
-.work-dots {
-  display: flex;
-  justify-content: center;
-  gap: 12px;
-  margin-top: 18px;
-}
+  .work-dots {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 18px;
+  }
   /* About section - mobile optimized */
   .about-section {
     margin-top: 0;
@@ -784,7 +798,7 @@ body {
 
   /* Social bar - at bottom left, keep vertical, more visible on mobile */
   .social-bar {
-    bottom: 80px;
+    bottom: 350px;
     top: auto;
     left: 0;
     flex-direction: column;
@@ -792,7 +806,7 @@ body {
     gap: 16px;
     background: rgba(3, 0, 185, 0.9);
   }
-  
+
   /* Bigger icons on mobile */
   .social-bar a {
     font-size: 24px;
@@ -800,14 +814,16 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: transform 0.3s ease, color 0.3s ease;
+    transition:
+      transform 0.3s ease,
+      color 0.3s ease;
   }
-  
+
   .social-bar a:hover {
     transform: scale(1.3);
     color: #ffd000;
   }
-  
+
   /* Hide divider lines on mobile */
   .social-bar a:not(:last-child)::after {
     display: none;
@@ -949,13 +965,12 @@ body {
    ========================================================= */
 .section-navigator {
   position: fixed;
-  bottom: 40px;
-  right: 40px;
+  bottom: 62px;
+  left: 90px;
   display: flex;
   align-items: center;
-  gap: 16px;
+  gap: 1px;
   z-index: 100;
-  background: rgba(0, 0, 0, 0.3);
   padding: 12px 20px;
   border-radius: 30px;
   backdrop-filter: blur(10px);
@@ -967,24 +982,22 @@ body {
 }
 
 .section-nav-chevron {
-  width: 36px;
-  height: 36px;
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.15);
-  border: 2px solid white;
+  border-color: transparent;
+  background: transparent;
   color: white;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
   transition: all 0.3s ease;
-  font-size: 14px;
+  font-size: 20px;
 }
 
 .section-nav-chevron:hover {
-  background: #ffd000;
-  border-color: #ffd000;
-  color: black;
+  color: #ffd000;
 }
 
 .section-nav-dots {
@@ -993,8 +1006,8 @@ body {
 }
 
 .section-nav-dot {
-  width: 10px;
-  height: 10px;
+  width: 20px;
+  height: 20px;
   border-radius: 50%;
   border: 2px solid white;
   cursor: pointer;
@@ -1003,9 +1016,9 @@ body {
 }
 
 .section-nav-dot.active {
-  background: #ffd000;
-  border-color: #ffd000;
-  transform: scale(1.3);
+  background: #fff;
+  border-color: #fff;
+  transform: scale(1.1);
 }
 
 .section-dot-label {

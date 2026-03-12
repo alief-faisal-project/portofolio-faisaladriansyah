@@ -45,36 +45,38 @@ export default function WorkSection() {
     const checkMobile = () => {
       setIsMobile(window.innerWidth <= 600);
     };
+
     checkMobile();
+
     window.addEventListener("resize", checkMobile);
+
     return () => window.removeEventListener("resize", checkMobile);
   }, []);
 
   // Auto hover effect for mobile
+  // (logic tetap dipertahankan tetapi auto slide dinonaktifkan)
   useEffect(() => {
     if (!isMobile) return;
 
     const triggerHover = () => {
       setIsHovering(true);
-      
+
       if (scrollTimeoutRef.current) {
         clearTimeout(scrollTimeoutRef.current);
       }
-      
+
       scrollTimeoutRef.current = setTimeout(() => {
         setIsHovering(false);
-        
-        // Auto slide to next card after hover ends
-        setTimeout(() => {
-          setIndex((prev) => (prev + 1) % projects.length);
-        }, 300);
+
+        // Auto slide dinonaktifkan
+        // setTimeout(() => {
+        //   setIndex((prev) => (prev + 1) % projects.length);
+        // }, 300);
       }, 2000);
     };
 
-    // Initial trigger
     const initialTimeout = setTimeout(triggerHover, 1000);
 
-    // Set interval for continuous auto-hover
     const interval = setInterval(() => {
       if (!isHovering) {
         triggerHover();
@@ -84,6 +86,7 @@ export default function WorkSection() {
     return () => {
       clearTimeout(initialTimeout);
       clearInterval(interval);
+
       if (scrollTimeoutRef.current) {
         clearTimeout(scrollTimeoutRef.current);
       }
@@ -91,11 +94,11 @@ export default function WorkSection() {
   }, [isMobile, index]);
 
   const next = () => {
-    setIndex((index + 1) % projects.length);
+    setIndex((prev) => (prev + 1) % projects.length);
   };
 
   const prev = () => {
-    setIndex((index - 1 + projects.length) % projects.length);
+    setIndex((prev) => (prev - 1 + projects.length) % projects.length);
   };
 
   return (
@@ -116,16 +119,24 @@ export default function WorkSection() {
           >
             {projects.map((p, i) => (
               <div
-                className={`work-card ${isMobile && isHovering && i === index ? "hovered" : ""}`}
+                className={`work-card ${
+                  isMobile && isHovering && i === index ? "hovered" : ""
+                }`}
                 key={i}
                 onMouseEnter={() => setIsHovering(true)}
                 onMouseLeave={() => setIsHovering(false)}
               >
                 <div className="work-image">
-                  <img src={p.image} />
+                  <img src={p.image} alt={p.title} />
 
                   <div
-                    className={`work-overlay ${isMobile && i === index ? (isHovering ? "visible" : "") : ""}`}
+                    className={`work-overlay ${
+                      isMobile && i === index
+                        ? isHovering
+                          ? "visible"
+                          : ""
+                        : ""
+                    }`}
                   >
                     <p>{p.desc}</p>
                   </div>
