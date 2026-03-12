@@ -23,6 +23,16 @@ const projects = [
     image: "/work3.jpg",
     desc: "Realtime chat app.",
   },
+  {
+    title: "E-Commerce UI",
+    image: "/work4.jpg",
+    desc: "UI toko online modern.",
+  },
+  {
+    title: "Task Manager",
+    image: "/work5.jpg",
+    desc: "Aplikasi manajemen tugas.",
+  },
 ];
 
 export default function WorkSection() {
@@ -101,14 +111,12 @@ export default function WorkSection() {
           <div
             className="work-track"
             style={{
-              transform: isMobile 
-                ? `translateY(-${index * 100}%)` 
-                : `translateX(-${index * 50}%)`,
+              transform: `translateX(-${index * 100}%)`,
             }}
           >
             {projects.map((p, i) => (
-              <div 
-                className={`work-card ${isMobile && isHovering && i === index ? "hovered" : ""}`} 
+              <div
+                className={`work-card ${isMobile && isHovering && i === index ? "hovered" : ""}`}
                 key={i}
                 onMouseEnter={() => setIsHovering(true)}
                 onMouseLeave={() => setIsHovering(false)}
@@ -116,7 +124,9 @@ export default function WorkSection() {
                 <div className="work-image">
                   <img src={p.image} />
 
-                  <div className={`work-overlay ${isMobile && i === index ? (isHovering ? "visible" : "") : ""}`}>
+                  <div
+                    className={`work-overlay ${isMobile && i === index ? (isHovering ? "visible" : "") : ""}`}
+                  >
                     <p>{p.desc}</p>
                   </div>
                 </div>
